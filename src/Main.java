@@ -1,17 +1,20 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
         List<Integer> intList = Arrays.asList(1, 2, 5, 16, -1, -2, 0, 32, 3, 5, 8, 23, 4);
-        Stream<Integer> stream = intList.stream();
-        stream.filter(x -> x > 0)
-                .filter(x -> x % 2 == 0)
-                .sorted(Comparator.naturalOrder())
-                //.forEach(System.out::println); - выводило каждый элемент на новой строке, но для
-                // удобства чтения решил вывести в строчку
-                .forEach(x -> System.out.print(x + " "));
+        List<Integer> newIntList = new ArrayList<>();
+        Collections.sort(intList);
+        for (int i = 0; i < intList.size(); i++) {
+            if (intList.get(i) > 0 && intList.get(i) % 2 == 0) {
+                newIntList.add(intList.get(i));
+            }
+        }
+        for (int i : newIntList) {
+            System.out.print(i + " ");
+        }
     }
 }
